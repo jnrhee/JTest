@@ -89,6 +89,12 @@ public class Main extends AppCompatActivity {
             }
         });
 
+        A1 a1 = new A1();
+        a1.protVal = 10;
+        B1 b1 = new B1();
+        b1.protVal = 20;
+
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAdd);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
