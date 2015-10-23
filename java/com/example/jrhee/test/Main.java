@@ -105,6 +105,9 @@ public class Main extends AppCompatActivity {
         Log.v(DBGSTR, "----------------------");
         nlist.BFSearchPrint();
 
+        MergeSort ms = new MergeSort(16);
+        ms.sort();
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAdd);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
