@@ -102,6 +102,7 @@ public class Main extends AppCompatActivity {
         nlist.inOrderPrint();
         nlist.postOrderPrint();
         nlist.getTreeLength();
+        nlist.getTreeLength2();
         Log.v(DBGSTR, "----------------------");
         nlist.BFSearchPrint();
 

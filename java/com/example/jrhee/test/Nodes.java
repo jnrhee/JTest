@@ -25,6 +25,20 @@ class Nodes {
         return dist;
     }
 
+    int getTreeLength2() {
+        int maxHeight =  doGetTreeLength(rootNode);
+
+        Log.v(Main.DBGSTR, "adv max-dist = "+maxHeight);
+        return maxHeight;
+    }
+
+    int doGetTreeLength(Node parent) {
+        if (parent == null)
+            return 0;
+
+        return 1 + Math.max(doGetTreeLength(parent.left), doGetTreeLength(parent.right));
+    }
+
     private void measureTreeLength (Node parent) {
         if (parent == null)
             return;
