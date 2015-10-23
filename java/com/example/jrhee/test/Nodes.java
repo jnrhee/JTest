@@ -16,8 +16,8 @@ class Nodes {
     }
 
     int getTreeLength() {
-        Node root = list.get(0);
-        dist = distRecord = 1;
+        Node root = rootNode;
+        dist = distRecord = 0;
         childNode = root;
 
         measureTreeLength(root);
@@ -57,6 +57,7 @@ class Nodes {
 
         Node child = findFirstAvailableChild(rootNode);
 
+        n.level = child.level+1;
         if (child.left == null)
             child.left = n;
         else
@@ -64,18 +65,84 @@ class Nodes {
     }
 
     private Node findFirstAvailableChild(Node parent) {
-        queue(parent);
+        queueInit(parent);
         return findFirstAvailableChildSub();
     }
 
     private Node findFirstAvailableChildSub() {
         Node parent = dequeue();
+        if (parent == null)
+            return null;
+
         if (parent.left == null || parent.right == null)
             return parent;
         
         queue(parent.left);
         queue(parent.right);
         return findFirstAvailableChildSub();
+    }
+
+    private Node qHead;
+    private Node qTail;
+
+    private void queueInit(Node root) {
+        qHead = qTail = null;
+        queue(root);
+    }
+
+    private void queue(Node n) {
+        if (n == null)
+            return;
+
+        if (qHead == null) {
+            qHead = qTail = n;
+        } else {
+            Node tmp = qTail;
+            qTail = n;
+            tmp.next = qTail;
+            qTail.next = null;
+        }
+    }
+
+    private Node dequeue() {
+        Node ret = qHead;
+
+        if (qHead != null) {
+            qHead = qHead.next;
+            ret.next = null;
+        }
+
+        return ret;
+    }
+
+    int bfsLevel;
+    String bfsStr;
+    void BFSearchPrint() {
+        bfsLevel = 0;
+        bfsStr = "";
+        queueInit(rootNode);
+        bfs();
+        Log.v(Main.DBGSTR, "BFS-" + bfsLevel + " :" + bfsStr);
+    }
+
+    private void bfs() {
+        Node n = dequeue();
+
+        if (n == null)
+            return;
+
+        if (n.level > bfsLevel) {
+            Log.v(Main.DBGSTR, "BFS-" + bfsLevel + " :" + bfsStr);
+            bfsStr = " "+n.val;
+            bfsLevel = n.level;
+        } else {
+            bfsStr += " "+n.val;
+        }
+
+        queue(n.left);
+        queue(n.right);
+
+        bfs();
     }
 
     void insert(Node n) {
@@ -85,6 +152,8 @@ class Nodes {
         }
 
         list.add(n);
+        if (list.size() == 1)
+            rootNode = list.get(0);
 
         Node[] nl = list.toArray(new Node[list.size()]);
 
@@ -115,7 +184,7 @@ class Nodes {
     private String out;
     void preOrderPrint() {
         out = "";
-        preOrderPrintSub(list.get(0));
+        preOrderPrintSub(rootNode);
         Log.v(Main.DBGSTR, " preOrder = " + out);
     }
 
@@ -130,7 +199,7 @@ class Nodes {
 
     void inOrderPrint() {
         out = "";
-        inOrderPrintSub(list.get(0));
+        inOrderPrintSub(rootNode);
         Log.v(Main.DBGSTR, " inOrder = " + out);
     }
 
@@ -145,7 +214,7 @@ class Nodes {
 
     void postOrderPrint() {
         out = "";
-        postOrderPrintSub(list.get(0));
+        postOrderPrintSub(rootNode);
         Log.v(Main.DBGSTR, " postOrder = " + out);
     }
 

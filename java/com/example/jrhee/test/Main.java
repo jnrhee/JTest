@@ -86,22 +86,24 @@ public class Main extends AppCompatActivity {
         b1.protVal = 20;
 
         T9 t9 = new T9();
-        int[] in = {2,3, 9, 9};
+        int[] in = {2,3};
         ArrayList<String> as = t9.printStrings(in);
         Log.v(Main.DBGSTR, Arrays.toString(as.toArray()));
 
 
         Nodes nlist = new Nodes();
-        for (int i=0;i<18;i++) {
+        for (int i=0;i<17;i++) {
             //Node n = new Node((int)(Math.random()*100));
             Node n = new Node(i);
-            nlist.insert(n);
+            nlist.insert2(n);
             Log.v(DBGSTR, "----------------------");
         }
         nlist.preOrderPrint();
         nlist.inOrderPrint();
         nlist.postOrderPrint();
         nlist.getTreeLength();
+        Log.v(DBGSTR, "----------------------");
+        nlist.BFSearchPrint();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAdd);
         fab.setOnClickListener(new View.OnClickListener() {
