@@ -8,8 +8,74 @@ class Nodes {
     private Node target;
     private boolean found;
     private ArrayList<Node> list = new ArrayList<Node>();
+    private int dist;
+    private int distRecord;
+    private Node childNode;
 
     Nodes () {
+    }
+
+    int getTreeLength() {
+        Node root = list.get(0);
+        dist = distRecord = 1;
+        childNode = root;
+
+        measureTreeLength(root);
+        Log.v(Main.DBGSTR, "max-dist = "+distRecord);
+        return dist;
+    }
+
+    private void measureTreeLength (Node parent) {
+        if (parent == null)
+            return;
+
+        dist++;
+        if (parent.right == null && parent.left == null) {
+            if (dist > distRecord) {
+                childNode = parent;
+                distRecord = dist;
+            }
+        } else {
+            if (parent.left != null) {
+                measureTreeLength(parent.left);
+                dist--;
+            }
+
+            if (parent.right != null) {
+                measureTreeLength(parent.right);
+                dist--;
+            }
+        }
+    }
+
+    private Node rootNode;
+    void insert2(Node n) {
+        if (rootNode == null) {
+            rootNode = n;
+            return;
+        }
+
+        Node child = findFirstAvailableChild(rootNode);
+
+        if (child.left == null)
+            child.left = n;
+        else
+            child.right = n;
+    }
+
+    private Node findFirstAvailableChild(Node parent) {
+        queue(parent);
+        return findFirstAvailableChildSub();
+    }
+
+    private Node findFirstAvailableChildSub() {
+        Node parent = dequeue();
+        if (parent.left == null || parent.right == null)
+            return parent;
+        
+        queue(parent.left);
+        queue(parent.right);
+        return findFirstAvailableChildSub();
     }
 
     void insert(Node n) {

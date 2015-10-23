@@ -13,6 +13,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -67,17 +69,6 @@ public class Main extends AppCompatActivity {
         Permute pm = new Permute();
         pm.printAllPermute();
 
-        Nodes nlist = new Nodes();
-        for (int i=0;i<10;i++) {
-            //Node n = new Node((int)(Math.random()*100));
-            Node n = new Node(i);
-            nlist.insert(n);
-            Log.v(DBGSTR, "----------------------");
-        }
-        nlist.preOrderPrint();
-        nlist.inOrderPrint();
-        nlist.postOrderPrint();
-
         mInText = (EditText) findViewById(R.id.textInput);
         mOutText = (TextView) findViewById(R.id.textOutput);
 
@@ -94,6 +85,23 @@ public class Main extends AppCompatActivity {
         B1 b1 = new B1();
         b1.protVal = 20;
 
+        T9 t9 = new T9();
+        int[] in = {2,3, 9, 9};
+        ArrayList<String> as = t9.printStrings(in);
+        Log.v(Main.DBGSTR, Arrays.toString(as.toArray()));
+
+
+        Nodes nlist = new Nodes();
+        for (int i=0;i<18;i++) {
+            //Node n = new Node((int)(Math.random()*100));
+            Node n = new Node(i);
+            nlist.insert(n);
+            Log.v(DBGSTR, "----------------------");
+        }
+        nlist.preOrderPrint();
+        nlist.inOrderPrint();
+        nlist.postOrderPrint();
+        nlist.getTreeLength();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAdd);
         fab.setOnClickListener(new View.OnClickListener() {
