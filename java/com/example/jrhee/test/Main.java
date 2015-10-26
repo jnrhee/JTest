@@ -109,6 +109,10 @@ public class Main extends AppCompatActivity {
         MergeSort ms = new MergeSort(16);
         ms.sort();
 
+        ComboStr cs = new ComboStr("ABCD");
+        cs.printUniqueStr();
+        cs.printUniqueStr2();
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAdd);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
