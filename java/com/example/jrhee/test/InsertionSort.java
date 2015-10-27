@@ -16,6 +16,19 @@ class InsertionSort {
         Log.v(Main.DBGSTR, Arrays.toString(data));
     }
 
+    private int[] v1 = new int[10];
+    InsertionSort ext1(int v){
+        v1[0] = v;
+        return this;
+    }
+    private int v2;
+    InsertionSort ext2(int v){
+        v1[1] = v;
+        return this;
+    }
+
+    int getVar(int x) {return v1[x];}
+
     void sort() {
         for (int i=1;i<data.length;i++) {
             int val = data[i];

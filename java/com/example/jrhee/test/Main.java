@@ -119,7 +119,8 @@ public class Main extends AppCompatActivity {
         hs.sort(false);
         Log.v(Main.DBGSTR, "heap sort time = " + ((System.currentTimeMillis() - lastTime) / (double) 1000));
 
-        InsertionSort is = new InsertionSort(16);
+        InsertionSort is = new InsertionSort(16).ext1(10).ext2(16);
+        Log.v(Main.DBGSTR, "v1 = "+is.getVar(0)+"  v2 = "+is.getVar(1));
         is.sort();
 
         StrComparator[] scl = {new StrComparator("Rhee", "Joon"),
