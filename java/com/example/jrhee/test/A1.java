@@ -6,6 +6,8 @@ public class A1 {
     private int val;
     protected int protVal; //protected means only accecible by classes inside jrhee.test package
 
+    int pubVal;
+
     A1 () {
         //synchronized (A1.class){
         synchronized (this){

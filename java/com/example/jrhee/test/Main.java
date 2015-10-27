@@ -113,6 +113,31 @@ public class Main extends AppCompatActivity {
         cs.printUniqueStr();
         cs.printUniqueStr2();
 
+        double lastTime = System.currentTimeMillis();
+        HeapSort hs = new HeapSort(100);
+        hs.sort(true);
+        hs.sort(false);
+        Log.v(Main.DBGSTR, "heap sort time = " + ((System.currentTimeMillis() - lastTime) / (double) 1000));
+
+        InsertionSort is = new InsertionSort(16);
+        is.sort();
+
+        StrComparator[] scl = {new StrComparator("Rhee", "Joon"),
+                new StrComparator("Kim", "Mike"),
+                new StrComparator("Lee", "Robert"),
+                new StrComparator("Rhee", "Abc"),
+                new StrComparator("Rhee", "Moon"),
+                new StrComparator("Kim", "Albert"),
+                new StrComparator("Rhee", "Joo")};
+
+        Arrays.sort(scl, new StrComparator("", ""));
+        for (StrComparator sc : scl)
+            Log.v(Main.DBGSTR, "Name:"+sc.surname+", "+sc.givenname);
+
+        //ClassicSingleton csn = ClassicSingleton.getInstance();
+        ClassicSingleton csn = ClassicSingleton.INST;
+        Log.v(Main.DBGSTR, "singleton val = "+csn.getVal());
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAdd);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
