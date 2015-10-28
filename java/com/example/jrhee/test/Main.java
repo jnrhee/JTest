@@ -139,6 +139,46 @@ public class Main extends AppCompatActivity {
         ClassicSingleton csn = ClassicSingleton.INST;
         Log.v(Main.DBGSTR, "singleton val = "+csn.getVal());
 
+        Fib fb = new Fib(100000);
+
+        //lastTime = System.currentTimeMillis();
+        //int n = fb.compute(0);
+        //Log.v(Main.DBGSTR, "Fib time = " + ((System.currentTimeMillis() - lastTime) / (double) 1000)+  "    result = "+n);
+        lastTime = System.currentTimeMillis();
+        int n = fb.compute(1);
+        Log.v(Main.DBGSTR, "Memory Fib time = " + ((System.currentTimeMillis() - lastTime) / (double) 1000)+  "    result = "+n+"  memory hit cnt= "+fb.mHit);
+
+        lastTime = System.currentTimeMillis();
+        n = fb.compute(2);
+        Log.v(Main.DBGSTR, "Loop Fib time = " + ((System.currentTimeMillis() - lastTime) / (double) 1000)+  "    result = "+n);
+
+        String str = "Joe Smith Mike";
+        String strClone = "";
+        for (int i=0;i<str.length();i++) {
+            char c = str.charAt(i);
+            strClone += c;
+        }
+        Log.v(Main.DBGSTR, "Name = " + strClone);
+
+        String[] ss = strClone.split(" ");
+        for (String s : ss) {
+            Log.v(Main.DBGSTR, "Name Array = " + s);
+        }
+
+        strClone = strClone.replace(" ", "");
+        Log.v(Main.DBGSTR, "Name = " + strClone);
+
+        HashMap<Integer, String> hm = new HashMap();
+        boolean col1 = (hm.put(1, "Hi")!=null);
+        boolean col2 = (hm.put(1, "Joon")!=null);
+
+        Log.v(Main.DBGSTR, "Hash map = " + hm.get(1) + " " + hm.get(1) + "   collision1=" + col1 + "  2=" + col2);
+
+        StringBuffer sbuf = new StringBuffer("Joon Rhee");
+        sbuf.insert(4, " is first name, ");
+        sbuf.append(" is last name");
+        Log.v(Main.DBGSTR, "StringBuffer = "+sbuf);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAdd);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
