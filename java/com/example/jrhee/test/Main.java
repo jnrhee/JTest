@@ -177,7 +177,32 @@ public class Main extends AppCompatActivity {
         StringBuffer sbuf = new StringBuffer("Joon Rhee");
         sbuf.insert(4, " is first name, ");
         sbuf.append(" is last name");
-        Log.v(Main.DBGSTR, "StringBuffer = "+sbuf);
+        Log.v(Main.DBGSTR, "StringBuffer = " + sbuf);
+
+        Prime pr = new Prime <Integer>();
+        pr.print(100);
+        String ssss = (String)pr.printType("what");
+        Log.v(Main.DBGSTR, "Prime print type = "+ssss);
+
+        /*
+        Object obj = new Object();
+        synchronized (obj) {
+            try {
+                obj.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }*/
+
+        String swaps = "ABCDE FGHI JKLMNOP";
+        char[] ca = swaps.toCharArray();
+        for (int i=0;i<ca.length/2;i++) {
+            char tmp = ca[i];
+            ca[i] = ca[ca.length-1-i];
+            ca[ca.length-1-i] = tmp;
+        }
+        String afterSwaps = new String(ca);
+        Log.v(Main.DBGSTR, "Swap string : "+swaps+" => "+afterSwaps);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAdd);
         fab.setOnClickListener(new View.OnClickListener() {
