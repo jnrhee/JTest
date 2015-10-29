@@ -62,7 +62,7 @@ class Nodes {
         }
     }
 
-    private Node rootNode;
+    Node rootNode;
     void insert2(Node n) {
         if (rootNode == null) {
             rootNode = n;
@@ -239,6 +239,56 @@ class Nodes {
         preOrderPrintSub(root.left);
         preOrderPrintSub(root.right);
         out += " "+root.val;
+    }
+
+    boolean isTreeBalanced(Node p){
+        if (p == null)
+            return true;
+
+        if (Math.abs(getHeight(p.left) - getHeight(p.right)) > 1)
+            return false;
+        else
+            return isTreeBalanced(p.left) && isTreeBalanced(p.right);
+    }
+
+    private int getHeight(Node p) {
+        if (p==null)
+            return 0;
+
+        return 1+Math.max(getHeight(p.left), getHeight(p.right));
+    }
+
+    private int mDepth;
+    private int mStep;
+
+    void createDlink(Node root, int depth) {
+        mStep = 0;
+        mDepth = depth;
+
+        //Linklist<Node> ret = new LinkList<Node>();
+
+        createDlink(root);
+    }
+
+    void createDlink(Node p) {
+        if (p == null)
+            return;
+
+        if (mDepth == mStep) {
+            //ret.add(p);
+            return;
+        }
+
+        if (p.left != null) {
+            mDepth++;
+            createDlink(p.left);
+            mDepth--;
+        }
+        if (p.right != null) {
+            mDepth++;
+            createDlink(p.right);
+            mDepth--;
+        }
     }
 }
 
