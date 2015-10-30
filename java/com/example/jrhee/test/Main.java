@@ -98,6 +98,8 @@ public class Main extends AppCompatActivity {
             nlist.insert2(n);
             Log.v(DBGSTR, "----------------------");
         }
+
+        Log.v(DBGSTR, "is Tree balaneced?   " + nlist.isTreeBalanced(nlist.rootNode));
         nlist.preOrderPrint();
         nlist.inOrderPrint();
         nlist.postOrderPrint();
