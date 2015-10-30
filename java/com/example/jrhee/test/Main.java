@@ -139,7 +139,7 @@ public class Main extends AppCompatActivity {
         ClassicSingleton csn = ClassicSingleton.INST;
         Log.v(Main.DBGSTR, "singleton val = "+csn.getVal());
 
-        Fib fb = new Fib(100000);
+        Fib fb = new Fib(10);
 
         //lastTime = System.currentTimeMillis();
         //int n = fb.compute(0);
@@ -204,7 +204,12 @@ public class Main extends AppCompatActivity {
         String afterSwaps = new String(ca);
         Log.v(Main.DBGSTR, "Swap string : "+swaps+" => "+afterSwaps);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAdd);
+        //BinaryTree bt = new BinaryTree(new int[] {5, 4, 2, 10, 11, 14, 15, 19, 8, 1});
+        BinaryTree bt = new BinaryTree(new int[] {10, 5, 15, 1, 7, 12, 18});
+        bt.inOrderPrint();
+        Log.v(Main.DBGSTR, "Is BST = "+bt.isBST());
+
+                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAdd);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

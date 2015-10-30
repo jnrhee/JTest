@@ -221,9 +221,9 @@ class Nodes {
         if (root == null)
             return;
 
-        preOrderPrintSub(root.left);
+        inOrderPrintSub(root.left);
         out += " "+root.val;
-        preOrderPrintSub(root.right);
+        inOrderPrintSub(root.right);
     }
 
     void postOrderPrint() {
@@ -236,8 +236,8 @@ class Nodes {
         if (root == null)
             return;
 
-        preOrderPrintSub(root.left);
-        preOrderPrintSub(root.right);
+        postOrderPrintSub(root.left);
+        postOrderPrintSub(root.right);
         out += " "+root.val;
     }
 }
