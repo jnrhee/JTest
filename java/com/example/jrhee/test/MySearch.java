@@ -69,7 +69,7 @@ public class MySearch {
     }
 
     static private void qsSub(int l, int r) {
-        if (l >= r || r <= l)
+        if (l >= r)
             return;
 
         int idx = qsPartition(l, r);
